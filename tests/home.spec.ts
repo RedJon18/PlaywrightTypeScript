@@ -1,33 +1,23 @@
 import { test, expect } from "@playwright/test";
+import { HomePageEdge } from "../pages/homePage";
 
-test.describe("Verify Edge Homepage", () => {
-  const expectedLinks = [
-    "Platform",
-    "Solutions",
-    "Inegrations",
-    "Resources",
-    "Support",
-  ];
-  test("Navigate to homepage and verify title", async ({ page }) => {
-    await page.goto("https://www.startedge.com/");
-    await expect(page).toHaveTitle(
+test.describe("Edge Homepage", () => {
+  let homePage: HomePageEdge;
+
+  test.beforeEach(async ({ page }) => {
+    homePage = new HomePageEdge(page);
+    await homePage.navigate();
+  });
+
+  test("Verify header links are visible and platform hover works", async () => {
+    await expect(homePage.page).toHaveTitle(
       "Employee-Driven Growth for Multi-location Franchise & Service Brands  | Edge"
     );
+    await homePage.verifyHeaderLinksVisible();
+    await homePage.hoverVerifyPlatform();
   });
 
-  test("Navigate to About Us", async ({ page }) => {
-    await page.goto("https://www.startedge.com/about-us");
-    await expect(page).toHaveTitle(
-      "Online Reviews & Employee Rewards Platform | Edge"
-    );
-  });
-
-  test("Click Get Demo button", async ({ page }) => {
-    await page.goto("https://www.startedge.com/");
-    await page
-      .getByRole("banner")
-      .getByRole("link", { name: "Get a Demo" })
-      .click();
-    await expect(page).toHaveURL("https://www.startedge.com/contact-us");
+  test("Click Get Demo button navigates to contact page", async () => {
+    await homePage.clickGetDemoAndVerify();
   });
 });
