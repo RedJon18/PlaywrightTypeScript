@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 
-export class HomePageEdge {
+export class EdgeHomePage {
   public readonly edgeHomeButtonLink: Locator;
   public readonly edgePlatformLink: Locator;
   public readonly edgeSolutionsLink: Locator;
@@ -36,7 +36,7 @@ export class HomePageEdge {
     });
   }
 
-  async navigate() {
+  async navigateHomepage() {
     await this.page.goto("https://www.startedge.com/");
   }
 
