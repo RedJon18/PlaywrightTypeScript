@@ -14,7 +14,7 @@ test.describe("Draftkings website test", () => {
     await page.goto("https://www.draftkings.com/");
     await expect(nflLink).toBeVisible();
     await nflLink.click();
-    await expect(page).toHaveURL(/.*fantasy-footbal/);
+    await expect(page).toHaveURL(/.*fantasy-football/);
     await expect(page).toHaveTitle(
       "Fantasy Football - Play NFL DFS on DraftKings"
     );
