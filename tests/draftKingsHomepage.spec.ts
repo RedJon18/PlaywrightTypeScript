@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Draftkings website test", () => {
   test("Verify homepage title", async ({ page }) => {
-    await page.goto("https://www.draftkings.com/");
+    await page.goto("https://www.draftkings.com/dfs");
     await expect(page).toHaveTitle(
       "DraftKings | Daily Fantasy Sports and Sportsbook"
     );
@@ -11,7 +11,7 @@ test.describe("Draftkings website test", () => {
   test("Click on NFL link and verify page navigation", async ({ page }) => {
     const nflLink = page.getByRole("link", { name: "NFL" });
 
-    await page.goto("https://www.draftkings.com/");
+    await page.goto("https://www.draftkings.com/dfs");
     await expect(nflLink).toBeVisible();
     await nflLink.click();
     await expect(page).toHaveURL(/.*fantasy-football/);
@@ -21,7 +21,7 @@ test.describe("Draftkings website test", () => {
   });
 
   test("Click on Promos link and enter random user data", async ({ page }) => {
-    await page.goto("https://www.draftkings.com/");
+    await page.goto("https://www.draftkings.com/dfs");
     await expect(page.locator('[data-test-id="Promos-link"]')).toBeVisible();
     await page.locator('[data-test-id="Promos-link"]').click();
     await expect(page).toHaveURL(/.*promotions/);
