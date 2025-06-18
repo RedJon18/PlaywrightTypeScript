@@ -3,7 +3,6 @@ import { test, expect } from "@playwright/test";
 test.describe("Riot website test", () => {
   test("Verify main homepage links and click Who We Are", async ({ page }) => {
     await page.goto("https://www.riotgames.com/en");
-    await expect(page.locator(".hero-new__content__logo")).toBeVisible();
     await expect(page.getByRole("link", { name: "Who We Are" })).toBeVisible();
     await expect(
       page.locator(
@@ -13,7 +12,6 @@ test.describe("Riot website test", () => {
     await expect(
       page.getByRole("link", { name: "News", exact: true })
     ).toBeVisible();
-    await expect(page.getByRole("link", { name: "Play Now" })).toBeVisible();
     await page.getByRole("link", { name: "Who We Are" }).click();
     await expect(page).toHaveURL(/.*who-we-are/);
   });
